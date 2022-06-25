@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:person_expenses_app/widgets/transaction_list.dart';
+
 import 'package:person_expenses_app/widgets/user_transactions.dart';
-import './widgets/new_transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,12 +24,14 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          UserTransactions(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
