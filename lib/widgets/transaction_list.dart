@@ -1,45 +1,24 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../models/transaction.dart';
 
-class TransactionList extends StatefulWidget {
-  const TransactionList({Key key}) : super(key: key);
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions;
 
-  @override
-  State<TransactionList> createState() => _TransactionListState();
-}
-
-class _TransactionListState extends State<TransactionList> {
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: "t1",
-      title: "New Shoes",
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Weekly Groceries",
-      amount: 16.53,
-      date: DateTime.now(),
-    )
-  ];
+  TransactionList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: _userTransactions.map((tx) {
+      children: transactions.map((tx) {
         return Card(
           child: Row(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                child: Text(
-                  "\$${tx.amount}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 15,
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -48,17 +27,30 @@ class _TransactionListState extends State<TransactionList> {
                   ),
                 ),
                 padding: EdgeInsets.all(10),
+                child: Text(
+                  '\$${tx.amount}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.purple,
+                  ),
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     tx.title,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
-                    DateFormat('yMMMMEEEEd').format(tx.date),
-                    style: TextStyle(color: Colors.blueGrey),
+                    DateFormat.yMMMd().format(tx.date),
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
                   ),
                 ],
               ),
